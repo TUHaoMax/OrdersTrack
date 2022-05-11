@@ -8,9 +8,11 @@ data=server.readerData("tracking_numbers.csv")
 tracklist = list(data["tracking_number"])
 
 data=server.createTrackData(data,tracklist)
+
+'''Output data as panda.DataFrame'''
 print(data)
 
-
+'''Insert data to MongoDB'''
 data=data.to_json(orient = 'records')
 server.insertData(data)
 
