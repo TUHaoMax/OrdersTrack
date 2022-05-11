@@ -22,6 +22,13 @@ class OrdersServer(object):
     def insertData(self, data):
         self.mycol.insert_many(json.loads(data))
 
+    def createTrackData(self, data, tracklist):
+        delivery_status, shipping_date, scheduled_delivery_date = self.gettrackData(tracklist)
+        data["delivery_status"] = delivery_status
+        data["shipping_date"] = shipping_date
+        data["scheduled_delivery_date"] = scheduled_delivery_date
+        return data
+
     def gettrackData(self, tracklist):
         delivery_status = []
         shipping_date = []
